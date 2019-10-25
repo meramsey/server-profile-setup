@@ -31,6 +31,9 @@ ln -sf /usr/share/zoneinfo/${Timezone} /etc/localtime
 #umask 0077 ; mkdir -p ~/.ssh ; grep -q -F \"$PUB_KEY\" ~/.ssh/authorized_keys 2>/dev/null || echo \"$PUB_KEY\" >> ~/.ssh/authorized_keys
 
 #Add Public keys from gitprovider for user to authorized keys
-mkdir -p ~/.ssh ; curl https://${GitProvider}/${GitUsername}.keys | tee -a ~/.ssh/authorized_keys
+mkdir -p ~/.ssh ; curl https://${GitProvider}/${GitUsername}.keys | tee -a ~/.ssh/authorized_keys 
+
+#Dedupe public keys in ~/.ssh/authorized_keys and backup original
+awk '!x[$0]++' ~/.ssh/authorized_keys > ~/.ssh/authorized_keys_deduped && mv ~/.ssh/authorized_keys ~/.ssh/authorized_keys.bak && mv ~/.ssh/authorized_keys_deduped ~/.ssh/authorized_keys
 
 echo 'Completed Configuration'
