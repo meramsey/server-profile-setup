@@ -1,9 +1,12 @@
 #!/bin/bash
 ## Author: Michael Ramsey
 ## Objective Set Bash profiles timezone and add public keys
+## https://gitlab.com/mikeramsey/server-profile-setup/blob/master/server_setup.sh
 ## How to use.
 # ./server_setup.sh
 # sh server_setup.sh
+## Oneliner
+## sh <(curl https://gitlab.com/mikeramsey/server-profile-setup/raw/master/server_setup.sh || wget -O - https://gitlab.com/mikeramsey/server-profile-setup/raw/master/server_setup.sh)
 
 ### Configure
 
